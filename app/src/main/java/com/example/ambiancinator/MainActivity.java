@@ -6,10 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,13 +15,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import com.example.ambiancinator.R.id;
 
 public class MainActivity extends AppCompatActivity {
     private final static int MAX_VOLUME = 100;
-    private final static float DEFAULT_VOLUME = 1f;
+    private final static int DEFAULT_VOLUME = 20;
     private SoundPool soundPool;
 
     private boolean isOrageChecked;
@@ -51,10 +47,22 @@ public class MainActivity extends AppCompatActivity {
     private int pluie;
     private int stress;
 
+    private int orageStreamID;
+    private int oiseauxStreamID;
+    private int oiseauxForetStreamID;
+    private int feuillesStreamID;
+    private int feuDeCampStreamID;
+    private int ruisseauStreamID;
+    private int chemineeStreamID;
+    private int coteStreamID;
+    private int ventStreamID;
+    private int pluieStreamID;
+    private int stressStreamID;
+
     private ImageButton ibOiseauxForet;
     private ImageButton ibFeuilles;
     private ImageButton ibFeuDeCamp;
-    private  ImageButton ibOiseaux;
+    private ImageButton ibOiseaux;
     private ImageButton ibRuisseau;
     private ImageButton ibCheminee;
     private ImageButton ibCote;
@@ -107,111 +115,82 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //###############################--ImageBouton--###############################\\
-        ibOiseauxForet = findViewById(id.ImageButton_OiseauxForet);
-        ibFeuilles = findViewById(id.ImageButton_Feuilles);
-        ibFeuDeCamp = findViewById(id.ImageButton_FeuDeCamp);
-        ibOiseaux = findViewById(id.ImageButton_Oiseaux);
-        ibRuisseau = findViewById(id.ImageButton_Ruisseau);
-        ibCheminee = findViewById(id.ImageButton_Cheminee);
-        ibCote = findViewById(id.ImageButton_Cote);
-        ibVent = findViewById(id.ImageButton_Vent);
-        ibPluie = findViewById(id.ImageButton_Pluie);
-        ibStress = findViewById(id.ImageButton_Stress);
-        ibOrage = findViewById(id.ImageButton_Orage);
+        ibOiseauxForet  = findViewById(id.ImageButton_OiseauxForet);
+        ibFeuilles      = findViewById(id.ImageButton_Feuilles);
+        ibFeuDeCamp     = findViewById(id.ImageButton_FeuDeCamp);
+        ibOiseaux       = findViewById(id.ImageButton_Oiseaux);
+        ibRuisseau      = findViewById(id.ImageButton_Ruisseau);
+        ibCheminee      = findViewById(id.ImageButton_Cheminee);
+        ibCote          = findViewById(id.ImageButton_Cote);
+        ibVent          = findViewById(id.ImageButton_Vent);
+        ibPluie         = findViewById(id.ImageButton_Pluie);
+        ibStress        = findViewById(id.ImageButton_Stress);
+        ibOrage         = findViewById(id.ImageButton_Orage);
 
         //###############################--CardView--###############################\\
-        cvOiseauxForet = findViewById(id.CardView_OiseauxForet);
-        cvFeuilles = findViewById(id.CardView_Feuilles);
-        cvFeuDeCamp = findViewById(id.CardView_FeuDeCamp);
-        cvOiseaux = findViewById(id.CardView_Oiseaux);
-        cvRuisseau = findViewById(id.CardView_Ruisseau);
-        cvCheminee = findViewById(id.CardView_Cheminee);
-        cvCote = findViewById(id.CardView_Cote);
-        cvVent = findViewById(id.CardView_Vent);
-        cvPluie = findViewById(id.CardView_Pluie);
-        cvStress = findViewById(id.CardView_Stress);
-        cvOrage = findViewById(id.CardView_Orage);
+        cvOiseauxForet  = findViewById(id.CardView_OiseauxForet);
+        cvFeuilles      = findViewById(id.CardView_Feuilles);
+        cvFeuDeCamp     = findViewById(id.CardView_FeuDeCamp);
+        cvOiseaux       = findViewById(id.CardView_Oiseaux);
+        cvRuisseau      = findViewById(id.CardView_Ruisseau);
+        cvCheminee      = findViewById(id.CardView_Cheminee);
+        cvCote          = findViewById(id.CardView_Cote);
+        cvVent          = findViewById(id.CardView_Vent);
+        cvPluie         = findViewById(id.CardView_Pluie);
+        cvStress        = findViewById(id.CardView_Stress);
+        cvOrage         = findViewById(id.CardView_Orage);
 
 
         //###############################--CardView--###############################\\
-        SeekBar sbOiseauxForet = findViewById(R.id.SeekBar_OiseauxForet);
-        SeekBar sbFeuilles = findViewById(R.id.SeekBar_Feuilles);
-        SeekBar sbFeuDeCamp = findViewById(R.id.SeekBar_FeuDeCamp);
-        SeekBar sbOiseaux = findViewById(R.id.SeekBar_Oiseaux);
-        SeekBar sbRuisseau = findViewById(R.id.SeekBar_Ruisseau);
-        SeekBar sbCheminee = findViewById(R.id.SeekBar_Cheminee);
-        SeekBar sbCote = findViewById(R.id.SeekBar_Cote);
-        SeekBar sbVent = findViewById(R.id.SeekBar_Vent);
-        SeekBar sbPluie = findViewById(R.id.SeekBar_Pluie);
-        SeekBar sbStress = findViewById(R.id.SeekBar_Stress);
-        SeekBar sbOrage = findViewById(R.id.SeekBar_Orage);
+        SeekBar sbOiseauxForet  = findViewById(R.id.SeekBar_OiseauxForet);
+        SeekBar sbFeuilles      = findViewById(R.id.SeekBar_Feuilles);
+        SeekBar sbFeuDeCamp     = findViewById(R.id.SeekBar_FeuDeCamp);
+        SeekBar sbOiseaux       = findViewById(R.id.SeekBar_Oiseaux);
+        SeekBar sbRuisseau      = findViewById(R.id.SeekBar_Ruisseau);
+        SeekBar sbCheminee      = findViewById(R.id.SeekBar_Cheminee);
+        SeekBar sbCote          = findViewById(R.id.SeekBar_Cote);
+        SeekBar sbVent          = findViewById(R.id.SeekBar_Vent);
+        SeekBar sbPluie         = findViewById(R.id.SeekBar_Pluie);
+        SeekBar sbStress        = findViewById(R.id.SeekBar_Stress);
+        SeekBar sbOrage         = findViewById(R.id.SeekBar_Orage);
 
         //###############################--SoundPool--###############################\\
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
+        @SuppressLint("WrongConstant") AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.USAGE_MEDIA)
+                .build();
 
-            soundPool = new SoundPool.Builder()
-                    .setMaxStreams(12)
-                    .setAudioAttributes(audioAttributes)
-                    .build();
-        }
-        else{
-            soundPool = new SoundPool(12, AudioManager.STREAM_MUSIC,0);
-        }
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(12)
+                .setAudioAttributes(audioAttributes)
+                .build();
 
-        orage =         soundPool.load(this,R.raw.orage,1);
-        oiseaux =       soundPool.load(this,R.raw.oiseaux,1);
-        oiseauxForet =  soundPool.load(this,R.raw.oiseauxforet,1);
-        feuilles =      soundPool.load(this,R.raw.feuilles,1);
-        feuDeCamp =     soundPool.load(this,R.raw.feudecamp,1);
-        ruisseau =      soundPool.load(this,R.raw.ruisseau,1);
-        cheminee =      soundPool.load(this,R.raw.cheminee,1);
-        cote =          soundPool.load(this,R.raw.cote,1);
-        vent =          soundPool.load(this,R.raw.vent,1);
-        pluie =         soundPool.load(this,R.raw.pluie,1);
-        stress =        soundPool.load(this,R.raw.stress,1);
 
-        /*
-        //###############################--MediaPlayer--###############################\\
-        final MediaPlayer mpOiseauxForet = MediaPlayer.create(this,R.raw.oiseauxforet);
-        mpOiseauxForet.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpFeuilles = MediaPlayer.create(this,R.raw.feuilles);
-        mpFeuilles.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpFeuDeCamp = MediaPlayer.create(this,R.raw.feudecamp);
-        mpFeuDeCamp.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpOiseaux = MediaPlayer.create(this,R.raw.oiseaux);
-        mpOiseaux.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpRuisseau = MediaPlayer.create(this,R.raw.ruisseau);
-        mpRuisseau.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpCheminee = MediaPlayer.create(this,R.raw.cheminee);
-        mpCheminee.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpCote = MediaPlayer.create(this,R.raw.cote);
-        mpCote.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpVent = MediaPlayer.create(this,R.raw.vent);
-        mpVent.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpPluie = MediaPlayer.create(this,R.raw.pluie);
-        mpPluie.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpStress = MediaPlayer.create(this,R.raw.stress);
-        mpStress.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-        final MediaPlayer mpOrage = MediaPlayer.create(this,R.raw.orage);
-        mpOrage.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-*/
+        orage           = soundPool.load(this,R.raw.orage,1);
+        oiseaux         = soundPool.load(this,R.raw.oiseaux,1);
+        oiseauxForet    = soundPool.load(this,R.raw.oiseauxforet,1);
+        feuilles        = soundPool.load(this,R.raw.feuilles,1);
+        feuDeCamp       = soundPool.load(this,R.raw.feudecamp,1);
+        ruisseau        = soundPool.load(this,R.raw.ruisseau,1);
+        cheminee        = soundPool.load(this,R.raw.cheminee,1);
+        cote            = soundPool.load(this,R.raw.cote,1);
+        vent            = soundPool.load(this,R.raw.vent,1);
+        pluie           = soundPool.load(this,R.raw.pluie,1);
+        stress          = soundPool.load(this,R.raw.stress,1);
+
+
 
         //###############################--OiseauxForet--###############################\\
         ibOiseauxForet.setOnClickListener(v -> {
             isOiseauxForetChecked = !isOiseauxForetChecked;
-            toggleBouton(isOiseauxForetChecked, soundPool, ibOiseauxForet, cvOiseauxForet, oiseauxForet);
-
+            oiseauxForetStreamID = toggleBouton(isOiseauxForetChecked, soundPool, ibOiseauxForet, cvOiseauxForet, oiseauxForet, oiseauxForetStreamID);
         });
         sbOiseauxForet.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float volume = (float) (1 - (Math.log(MAX_VOLUME - sbOiseauxForet.getProgress()) / Math.log(MAX_VOLUME)));
-                soundPool.setVolume(oiseauxForet,volume,volume);
+                soundPool.setVolume(oiseauxForetStreamID,volume,volume);
             }
 
             @Override
@@ -223,18 +202,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-/*
+
         //###############################--Feuilles--###############################\\
         ibFeuilles.setOnClickListener(v -> {
             isFeuillesChecked = !isFeuillesChecked;
-            toggleBouton(isFeuillesChecked, mpFeuilles, ibFeuilles, cvFeuilles);
-
+            feuillesStreamID = toggleBouton(isFeuillesChecked, soundPool, ibFeuilles, cvFeuilles, feuilles, feuillesStreamID);
         });
         sbFeuilles.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbFeuilles.getProgress()) / Math.log(MAX_VOLUME)));
-                mpFeuilles.setVolume(volume, volume);
+                soundPool.setVolume(feuillesStreamID,getVolumeFromSeekBar(sbFeuilles),getVolumeFromSeekBar(sbFeuilles));
             }
 
             @Override
@@ -250,14 +227,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--FeuDeCamp--###############################\\
         ibFeuDeCamp.setOnClickListener(v -> {
             isFeuDeCampChecked = !isFeuDeCampChecked;
-            toggleBouton(isFeuDeCampChecked, mpFeuDeCamp, ibFeuDeCamp, cvFeuDeCamp);
-
+            feuDeCampStreamID = toggleBouton(isFeuDeCampChecked, soundPool, ibFeuDeCamp, cvFeuDeCamp, feuDeCamp,feuDeCampStreamID);
         });
         sbFeuDeCamp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbFeuDeCamp.getProgress()) / Math.log(MAX_VOLUME)));
-                mpFeuDeCamp.setVolume(volume, volume);
+                soundPool.setVolume(feuDeCampStreamID,getVolumeFromSeekBar(sbFeuDeCamp),getVolumeFromSeekBar(sbFeuDeCamp));
             }
 
             @Override
@@ -273,14 +248,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Oiseaux--###############################\\
         ibOiseaux.setOnClickListener(v -> {
             isOiseauxChecked = !isOiseauxChecked;
-            toggleBouton(isOiseauxChecked, mpOiseaux, ibOiseaux, cvOiseaux);
-
+            oiseauxStreamID = toggleBouton(isOiseauxChecked, soundPool, ibOiseaux, cvOiseaux,oiseaux,oiseauxStreamID);
         });
         sbOiseaux.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbOiseaux.getProgress()) / Math.log(MAX_VOLUME)));
-                mpOiseaux.setVolume(volume, volume);
+                soundPool.setVolume(oiseauxStreamID,getVolumeFromSeekBar(sbOiseaux), getVolumeFromSeekBar(sbOiseaux));
             }
 
             @Override
@@ -296,14 +269,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Ruisseau--###############################\\
         ibRuisseau.setOnClickListener(v -> {
             isRuisseauChecked = !isRuisseauChecked;
-            toggleBouton(isRuisseauChecked, mpRuisseau, ibRuisseau, cvRuisseau);
-
+            ruisseauStreamID = toggleBouton(isRuisseauChecked, soundPool, ibRuisseau, cvRuisseau, ruisseau, ruisseauStreamID);
         });
         sbRuisseau.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbRuisseau.getProgress()) / Math.log(MAX_VOLUME)));
-                mpRuisseau.setVolume(volume, volume);
+                soundPool.setVolume(ruisseauStreamID,getVolumeFromSeekBar(sbRuisseau), getVolumeFromSeekBar(sbRuisseau));
             }
 
             @Override
@@ -319,14 +290,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Cheminee--###############################\\
         ibCheminee.setOnClickListener(v -> {
             isChemineeChecked = !isChemineeChecked;
-            toggleBouton(isChemineeChecked, mpCheminee, ibCheminee, cvCheminee);
-
+            chemineeStreamID = toggleBouton(isChemineeChecked, soundPool, ibCheminee, cvCheminee,cheminee, chemineeStreamID);
         });
         sbCheminee.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbCheminee.getProgress()) / Math.log(MAX_VOLUME)));
-                mpCheminee.setVolume(volume, volume);
+                soundPool.setVolume(chemineeStreamID,getVolumeFromSeekBar(sbCheminee), getVolumeFromSeekBar(sbCheminee));
             }
 
             @Override
@@ -342,14 +311,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Cote--###############################\\
         ibCote.setOnClickListener(v -> {
             isCoteChecked = !isCoteChecked;
-            toggleBouton(isCoteChecked, mpCote, ibCote, cvCote);
-
+            coteStreamID = toggleBouton(isCoteChecked, soundPool, ibCote, cvCote, cote, coteStreamID);
         });
         sbCote.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbCote.getProgress()) / Math.log(MAX_VOLUME)));
-                mpCote.setVolume(volume, volume);
+                soundPool.setVolume(coteStreamID,getVolumeFromSeekBar(sbCote), getVolumeFromSeekBar(sbCote));
             }
 
             @Override
@@ -365,14 +332,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Vent--###############################\\
         ibVent.setOnClickListener(v -> {
             isVentChecked = !isVentChecked;
-            toggleBouton(isVentChecked, mpVent, ibVent, cvVent);
-
+            ventStreamID = toggleBouton(isVentChecked, soundPool, ibVent, cvVent, vent, ventStreamID);
         });
         sbVent.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbVent.getProgress()) / Math.log(MAX_VOLUME)));
-                mpVent.setVolume(volume, volume);
+                soundPool.setVolume(ventStreamID,getVolumeFromSeekBar(sbVent), getVolumeFromSeekBar(sbVent));
             }
 
             @Override
@@ -388,14 +353,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Pluie--###############################\\
         ibPluie.setOnClickListener(v -> {
             isPluieChecked = !isPluieChecked;
-            toggleBouton(isPluieChecked, mpPluie, ibPluie, cvPluie);
-
+            pluieStreamID = toggleBouton(isPluieChecked, soundPool, ibPluie, cvPluie,pluie, pluieStreamID);
         });
         sbPluie.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbPluie.getProgress()) / Math.log(MAX_VOLUME)));
-                mpPluie.setVolume(volume, volume);
+                soundPool.setVolume(pluieStreamID,getVolumeFromSeekBar(sbPluie), getVolumeFromSeekBar(sbPluie));
             }
 
             @Override
@@ -411,14 +374,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Stress--###############################\\
         ibStress.setOnClickListener(v -> {
             isStressChecked = !isStressChecked;
-            toggleBouton(isStressChecked, mpStress, ibStress, cvStress);
-
+            stressStreamID = toggleBouton(isStressChecked, soundPool, ibStress, cvStress, stress, stressStreamID);
         });
         sbStress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbStress.getProgress()) / Math.log(MAX_VOLUME)));
-                mpStress.setVolume(volume, volume);
+                soundPool.setVolume(stressStreamID, getVolumeFromSeekBar(sbStress), getVolumeFromSeekBar(sbStress));
             }
 
             @Override
@@ -434,14 +395,12 @@ public class MainActivity extends AppCompatActivity {
         //###############################--Orage--###############################\\
         ibOrage.setOnClickListener(v -> {
             isOrageChecked = !isOrageChecked;
-            toggleBouton(isOrageChecked, mpOrage, ibOrage, cvOrage);
-
+            orageStreamID = toggleBouton(isOrageChecked, soundPool, ibOrage, cvOrage, orage, orageStreamID);
         });
         sbOrage.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float volume = (float) (1 - (Math.log(MAX_VOLUME - sbOrage.getProgress()) / Math.log(MAX_VOLUME)));
-                mpOrage.setVolume(volume, volume);
+                soundPool.setVolume(orageStreamID,getVolumeFromSeekBar(sbOrage), getVolumeFromSeekBar(sbOrage));
             }
 
             @Override
@@ -453,37 +412,32 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-*/
     }
-/*
-    private void toggleBouton(boolean bool, MediaPlayer mediaPlayer, ImageButton imageButton, CardView cardView){
-        if (bool){
-            mediaPlayer.start();
-            mediaPlayer.setLooping(true);
-            cardView.setCardBackgroundColor(ColorStateList.valueOf(getColor(R.color.purple_500)));
-            imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.softer_grey)));
-        }
-        else{
-            mediaPlayer.pause();
-            mediaPlayer.setLooping(false);
-            cardView.setCardBackgroundColor(ColorStateList.valueOf(getColor(R.color.softer_grey)));
-            imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.soft_grey)));
-        }
-    }
-*/
 
-    private void toggleBouton(boolean bool, SoundPool soundPool, ImageButton imageButton, CardView cardView, int soundID){
+    private int toggleBouton(boolean bool, SoundPool soundPool, ImageButton imageButton, CardView cardView, int soundID, int streamID){
         if (bool){
-            Toast.makeText(this, "Pouet "+soundID, Toast.LENGTH_SHORT).show();
-            soundPool.play(soundID,DEFAULT_VOLUME,DEFAULT_VOLUME,0,-1,1);
+            if (streamID == 0) {
+                streamID = soundPool.play(soundID, getInitVolume(), getInitVolume(), 0, -1, 1);
+            }
+            else{
+                soundPool.resume(streamID);
+            }
             cardView.setCardBackgroundColor(ColorStateList.valueOf(getColor(R.color.purple_500)));
             imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.softer_grey)));
         }
         else{
-            soundPool.autoPause();
+            soundPool.pause(streamID);
             cardView.setCardBackgroundColor(ColorStateList.valueOf(getColor(R.color.softer_grey)));
             imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.soft_grey)));
         }
+        return streamID;
+    }
+    private float getVolumeFromSeekBar(SeekBar seekBar){
+        return (float) (1 - (Math.log(MAX_VOLUME - seekBar.getProgress()) / Math.log(MAX_VOLUME)));
+    }
+
+    private float getInitVolume(){
+        return (float) (1 - (Math.log(MAX_VOLUME - MainActivity.DEFAULT_VOLUME) / Math.log(MAX_VOLUME)));
     }
 
     @Override

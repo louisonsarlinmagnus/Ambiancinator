@@ -72,8 +72,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
+
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_OiseauxForet"
                     android:src="@drawable/oiseauxforet"
@@ -117,7 +118,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Feuilles"
                     android:src="@drawable/feuilles"
@@ -161,7 +162,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_FeuDeCamp"
                     android:src="@drawable/feudecamp"
@@ -207,7 +208,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Oiseaux"
                     android:src="@drawable/oiseaux"
@@ -250,7 +251,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Ruisseau"
                     android:src="@drawable/ruisseau"
@@ -293,7 +294,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Cheminee"
                     android:src="@drawable/cheminee"
@@ -339,7 +340,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Cote"
                     android:src="@drawable/cote"
@@ -382,7 +383,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Vent"
                     android:src="@drawable/vent"
@@ -425,7 +426,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Pluie"
                     android:src="@drawable/pluie"
@@ -471,7 +472,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Stress"
                     android:src="@drawable/stress"
@@ -514,7 +515,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:backgroundTint="@color/soft_grey"
+android:backgroundTint="@color/soft_grey"
                     android:layout_weight="3"
                     android:id="@+id/ImageButton_Orage"
                     android:src="@drawable/orage"
