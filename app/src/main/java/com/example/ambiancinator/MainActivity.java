@@ -5,7 +5,11 @@ import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,10 +18,15 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
+import android.widget.Toast;
+
+import com.example.ambiancinator.R.id;
 
 public class MainActivity extends AppCompatActivity {
     private final static int MAX_VOLUME = 100;
-    private final static float DEFAULT_VOLUME = .2f;
+    private final static float DEFAULT_VOLUME = 1f;
+    private SoundPool soundPool;
+
     private boolean isOrageChecked;
     private boolean isOiseauxChecked;
     private boolean isOiseauxForetChecked;
@@ -30,13 +39,50 @@ public class MainActivity extends AppCompatActivity {
     private boolean isPluieChecked;
     private boolean isStressChecked;
 
+    private int orage;
+    private int oiseaux;
+    private int oiseauxForet;
+    private int feuilles;
+    private int feuDeCamp;
+    private int ruisseau;
+    private int cheminee;
+    private int cote;
+    private int vent;
+    private int pluie;
+    private int stress;
+
+    private ImageButton ibOiseauxForet;
+    private ImageButton ibFeuilles;
+    private ImageButton ibFeuDeCamp;
+    private  ImageButton ibOiseaux;
+    private ImageButton ibRuisseau;
+    private ImageButton ibCheminee;
+    private ImageButton ibCote;
+    private ImageButton ibVent;
+    private ImageButton ibPluie;
+    private ImageButton ibStress;
+    private ImageButton ibOrage;
+
+    private CardView cvOiseauxForet;
+    private CardView cvFeuDeCamp;
+    private CardView cvOiseaux;
+    private CardView cvRuisseau;
+    private CardView cvCheminee;
+    private CardView cvCote;
+    private CardView cvVent;
+    private CardView cvPluie;
+    private CardView cvStress;
+    private CardView cvOrage;
+    private CardView cvFeuilles;
+
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//###############################--Bouton INFO--###############################\\
+        //###############################--Bouton INFO--###############################\\
         ImageButton imageButtonInfo = findViewById(R.id.ImageButton_Info);
         imageButtonInfo.setOnClickListener(v -> {
             // inflate the layout of the popup window
@@ -60,27 +106,112 @@ public class MainActivity extends AppCompatActivity {
             });
         });
 
+        //###############################--ImageBouton--###############################\\
+        ibOiseauxForet = findViewById(id.ImageButton_OiseauxForet);
+        ibFeuilles = findViewById(id.ImageButton_Feuilles);
+        ibFeuDeCamp = findViewById(id.ImageButton_FeuDeCamp);
+        ibOiseaux = findViewById(id.ImageButton_Oiseaux);
+        ibRuisseau = findViewById(id.ImageButton_Ruisseau);
+        ibCheminee = findViewById(id.ImageButton_Cheminee);
+        ibCote = findViewById(id.ImageButton_Cote);
+        ibVent = findViewById(id.ImageButton_Vent);
+        ibPluie = findViewById(id.ImageButton_Pluie);
+        ibStress = findViewById(id.ImageButton_Stress);
+        ibOrage = findViewById(id.ImageButton_Orage);
 
-//###############################--OiseauxForet--###############################\\
+        //###############################--CardView--###############################\\
+        cvOiseauxForet = findViewById(id.CardView_OiseauxForet);
+        cvFeuilles = findViewById(id.CardView_Feuilles);
+        cvFeuDeCamp = findViewById(id.CardView_FeuDeCamp);
+        cvOiseaux = findViewById(id.CardView_Oiseaux);
+        cvRuisseau = findViewById(id.CardView_Ruisseau);
+        cvCheminee = findViewById(id.CardView_Cheminee);
+        cvCote = findViewById(id.CardView_Cote);
+        cvVent = findViewById(id.CardView_Vent);
+        cvPluie = findViewById(id.CardView_Pluie);
+        cvStress = findViewById(id.CardView_Stress);
+        cvOrage = findViewById(id.CardView_Orage);
 
-        /*On note les références des boutons et image etc*/
-        ImageButton ibOiseauxForet = findViewById(R.id.ImageButton_OiseauxForet);
-        CardView cvOiseauxForet = findViewById(R.id.CardView_OiseauxForet);
+
+        //###############################--CardView--###############################\\
         SeekBar sbOiseauxForet = findViewById(R.id.SeekBar_OiseauxForet);
+        SeekBar sbFeuilles = findViewById(R.id.SeekBar_Feuilles);
+        SeekBar sbFeuDeCamp = findViewById(R.id.SeekBar_FeuDeCamp);
+        SeekBar sbOiseaux = findViewById(R.id.SeekBar_Oiseaux);
+        SeekBar sbRuisseau = findViewById(R.id.SeekBar_Ruisseau);
+        SeekBar sbCheminee = findViewById(R.id.SeekBar_Cheminee);
+        SeekBar sbCote = findViewById(R.id.SeekBar_Cote);
+        SeekBar sbVent = findViewById(R.id.SeekBar_Vent);
+        SeekBar sbPluie = findViewById(R.id.SeekBar_Pluie);
+        SeekBar sbStress = findViewById(R.id.SeekBar_Stress);
+        SeekBar sbOrage = findViewById(R.id.SeekBar_Orage);
+
+        //###############################--SoundPool--###############################\\
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(12)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+        }
+        else{
+            soundPool = new SoundPool(12, AudioManager.STREAM_MUSIC,0);
+        }
+
+        orage =         soundPool.load(this,R.raw.orage,1);
+        oiseaux =       soundPool.load(this,R.raw.oiseaux,1);
+        oiseauxForet =  soundPool.load(this,R.raw.oiseauxforet,1);
+        feuilles =      soundPool.load(this,R.raw.feuilles,1);
+        feuDeCamp =     soundPool.load(this,R.raw.feudecamp,1);
+        ruisseau =      soundPool.load(this,R.raw.ruisseau,1);
+        cheminee =      soundPool.load(this,R.raw.cheminee,1);
+        cote =          soundPool.load(this,R.raw.cote,1);
+        vent =          soundPool.load(this,R.raw.vent,1);
+        pluie =         soundPool.load(this,R.raw.pluie,1);
+        stress =        soundPool.load(this,R.raw.stress,1);
+
+        /*
+        //###############################--MediaPlayer--###############################\\
         final MediaPlayer mpOiseauxForet = MediaPlayer.create(this,R.raw.oiseauxforet);
         mpOiseauxForet.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpFeuilles = MediaPlayer.create(this,R.raw.feuilles);
+        mpFeuilles.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpFeuDeCamp = MediaPlayer.create(this,R.raw.feudecamp);
+        mpFeuDeCamp.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpOiseaux = MediaPlayer.create(this,R.raw.oiseaux);
+        mpOiseaux.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpRuisseau = MediaPlayer.create(this,R.raw.ruisseau);
+        mpRuisseau.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpCheminee = MediaPlayer.create(this,R.raw.cheminee);
+        mpCheminee.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpCote = MediaPlayer.create(this,R.raw.cote);
+        mpCote.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpVent = MediaPlayer.create(this,R.raw.vent);
+        mpVent.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpPluie = MediaPlayer.create(this,R.raw.pluie);
+        mpPluie.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpStress = MediaPlayer.create(this,R.raw.stress);
+        mpStress.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+        final MediaPlayer mpOrage = MediaPlayer.create(this,R.raw.orage);
+        mpOrage.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
+*/
 
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--OiseauxForet--###############################\\
         ibOiseauxForet.setOnClickListener(v -> {
             isOiseauxForetChecked = !isOiseauxForetChecked;
-            toggleBouton(isOiseauxForetChecked, mpOiseauxForet, ibOiseauxForet, cvOiseauxForet);
+            toggleBouton(isOiseauxForetChecked, soundPool, ibOiseauxForet, cvOiseauxForet, oiseauxForet);
 
         });
         sbOiseauxForet.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float volume = (float) (1 - (Math.log(MAX_VOLUME - sbOiseauxForet.getProgress()) / Math.log(MAX_VOLUME)));
-                mpOiseauxForet.setVolume(volume, volume);
+                soundPool.setVolume(oiseauxForet,volume,volume);
             }
 
             @Override
@@ -92,17 +223,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//###############################--Feuilles--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibFeuilles = findViewById(R.id.ImageButton_Feuilles);
-        CardView cvFeuilles = findViewById(R.id.CardView_Feuilles);
-        SeekBar sbFeuilles = findViewById(R.id.SeekBar_Feuilles);
-        final MediaPlayer mpFeuilles = MediaPlayer.create(this,R.raw.feuilles);
-        mpFeuilles.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+/*
+        //###############################--Feuilles--###############################\\
         ibFeuilles.setOnClickListener(v -> {
             isFeuillesChecked = !isFeuillesChecked;
             toggleBouton(isFeuillesChecked, mpFeuilles, ibFeuilles, cvFeuilles);
@@ -125,16 +247,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--FeuDeCamp--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibFeuDeCamp = findViewById(R.id.ImageButton_FeuDeCamp);
-        CardView cvFeuDeCamp = findViewById(R.id.CardView_FeuDeCamp);
-        SeekBar sbFeuDeCamp = findViewById(R.id.SeekBar_FeuDeCamp);
-        final MediaPlayer mpFeuDeCamp = MediaPlayer.create(this,R.raw.feudecamp);
-        mpFeuDeCamp.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--FeuDeCamp--###############################\\
         ibFeuDeCamp.setOnClickListener(v -> {
             isFeuDeCampChecked = !isFeuDeCampChecked;
             toggleBouton(isFeuDeCampChecked, mpFeuDeCamp, ibFeuDeCamp, cvFeuDeCamp);
@@ -157,16 +270,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Oiseaux--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibOiseaux = findViewById(R.id.ImageButton_Oiseaux);
-        CardView cvOiseaux = findViewById(R.id.CardView_Oiseaux);
-        SeekBar sbOiseaux = findViewById(R.id.SeekBar_Oiseaux);
-        final MediaPlayer mpOiseaux = MediaPlayer.create(this,R.raw.oiseaux);
-        mpOiseaux.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Oiseaux--###############################\\
         ibOiseaux.setOnClickListener(v -> {
             isOiseauxChecked = !isOiseauxChecked;
             toggleBouton(isOiseauxChecked, mpOiseaux, ibOiseaux, cvOiseaux);
@@ -189,16 +293,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Ruisseau--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibRuisseau = findViewById(R.id.ImageButton_Ruisseau);
-        CardView cvRuisseau = findViewById(R.id.CardView_Ruisseau);
-        SeekBar sbRuisseau = findViewById(R.id.SeekBar_Ruisseau);
-        final MediaPlayer mpRuisseau = MediaPlayer.create(this,R.raw.ruisseau);
-        mpRuisseau.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Ruisseau--###############################\\
         ibRuisseau.setOnClickListener(v -> {
             isRuisseauChecked = !isRuisseauChecked;
             toggleBouton(isRuisseauChecked, mpRuisseau, ibRuisseau, cvRuisseau);
@@ -221,16 +316,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
-//###############################--Cheminee--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibCheminee = findViewById(R.id.ImageButton_Cheminee);
-        CardView cvCheminee = findViewById(R.id.CardView_Cheminee);
-        SeekBar sbCheminee = findViewById(R.id.SeekBar_Cheminee);
-        final MediaPlayer mpCheminee = MediaPlayer.create(this,R.raw.cheminee);
-        mpCheminee.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Cheminee--###############################\\
         ibCheminee.setOnClickListener(v -> {
             isChemineeChecked = !isChemineeChecked;
             toggleBouton(isChemineeChecked, mpCheminee, ibCheminee, cvCheminee);
@@ -253,16 +339,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Cote--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibCote = findViewById(R.id.ImageButton_Cote);
-        CardView cvCote = findViewById(R.id.CardView_Cote);
-        SeekBar sbCote = findViewById(R.id.SeekBar_Cote);
-        final MediaPlayer mpCote = MediaPlayer.create(this,R.raw.cote);
-        mpCote.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Cote--###############################\\
         ibCote.setOnClickListener(v -> {
             isCoteChecked = !isCoteChecked;
             toggleBouton(isCoteChecked, mpCote, ibCote, cvCote);
@@ -285,16 +362,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Vent--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibVent = findViewById(R.id.ImageButton_Vent);
-        CardView cvVent = findViewById(R.id.CardView_Vent);
-        SeekBar sbVent = findViewById(R.id.SeekBar_Vent);
-        final MediaPlayer mpVent = MediaPlayer.create(this,R.raw.vent);
-        mpVent.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Vent--###############################\\
         ibVent.setOnClickListener(v -> {
             isVentChecked = !isVentChecked;
             toggleBouton(isVentChecked, mpVent, ibVent, cvVent);
@@ -317,16 +385,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Pluie--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibPluie = findViewById(R.id.ImageButton_Pluie);
-        CardView cvPluie = findViewById(R.id.CardView_Pluie);
-        SeekBar sbPluie = findViewById(R.id.SeekBar_Pluie);
-        final MediaPlayer mpPluie = MediaPlayer.create(this,R.raw.pluie);
-        mpPluie.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Pluie--###############################\\
         ibPluie.setOnClickListener(v -> {
             isPluieChecked = !isPluieChecked;
             toggleBouton(isPluieChecked, mpPluie, ibPluie, cvPluie);
@@ -349,16 +408,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Stress--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibStress = findViewById(R.id.ImageButton_Stress);
-        CardView cvStress = findViewById(R.id.CardView_Stress);
-        SeekBar sbStress = findViewById(R.id.SeekBar_Stress);
-        final MediaPlayer mpStress = MediaPlayer.create(this,R.raw.stress);
-        mpStress.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Stress--###############################\\
         ibStress.setOnClickListener(v -> {
             isStressChecked = !isStressChecked;
             toggleBouton(isStressChecked, mpStress, ibStress, cvStress);
@@ -381,16 +431,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//###############################--Orage--###############################\\
-
-        /*On note les références des boutons et image etc*/
-        ImageButton ibOrage = findViewById(R.id.ImageButton_Orage);
-        CardView cvOrage = findViewById(R.id.CardView_Orage);
-        SeekBar sbOrage = findViewById(R.id.SeekBar_Orage);
-        final MediaPlayer mpOrage = MediaPlayer.create(this,R.raw.orage);
-        mpOrage.setVolume(DEFAULT_VOLUME, DEFAULT_VOLUME);
-
-        /*On créer les action si on appui ou on bouge*/
+        //###############################--Orage--###############################\\
         ibOrage.setOnClickListener(v -> {
             isOrageChecked = !isOrageChecked;
             toggleBouton(isOrageChecked, mpOrage, ibOrage, cvOrage);
@@ -412,9 +453,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+*/
     }
-
+/*
     private void toggleBouton(boolean bool, MediaPlayer mediaPlayer, ImageButton imageButton, CardView cardView){
         if (bool){
             mediaPlayer.start();
@@ -429,5 +470,26 @@ public class MainActivity extends AppCompatActivity {
             imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.soft_grey)));
         }
     }
+*/
 
+    private void toggleBouton(boolean bool, SoundPool soundPool, ImageButton imageButton, CardView cardView, int soundID){
+        if (bool){
+            Toast.makeText(this, "Pouet "+soundID, Toast.LENGTH_SHORT).show();
+            soundPool.play(soundID,DEFAULT_VOLUME,DEFAULT_VOLUME,0,-1,1);
+            cardView.setCardBackgroundColor(ColorStateList.valueOf(getColor(R.color.purple_500)));
+            imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.softer_grey)));
+        }
+        else{
+            soundPool.autoPause();
+            cardView.setCardBackgroundColor(ColorStateList.valueOf(getColor(R.color.softer_grey)));
+            imageButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.soft_grey)));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundPool.release();
+        soundPool = null;
+    }
 }
