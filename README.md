@@ -20,17 +20,17 @@ Ambiance de lecture
 
 Il faut pouvoir recréer un maximum d'ambience. Pour cela nous aurons besoin de:
 
-[x] [Pluie](https://freesound.org/people/Arctura/sounds/34065/)
-[x] [Orage](https://freesound.org/people/s-light/sounds/414050/)
-[x] [Vent](https://freesound.org/people/ERH/sounds/34338/)
-[x] [Oiseaux](https://freesound.org/people/hargissssound/sounds/345851/)
-[x] [Oiseaux Foret](https://freesound.org/people/reinsamba/sounds/18765/)
-[x] [Feuilles](https://freesound.org/people/alessandro.gargiulo/sounds/420155/)
-[x] [Côte](https://freesound.org/people/Luftrum/sounds/48412/)
-[x] [Ruisseau](https://freesound.org/people/Pfannkuchn/sounds/459409/)
-[x] [Feu de camp](https://freesound.org/people/matucha/sounds/170247/)
-[x] [Stress](https://freesound.org/people/klankbeeld/sounds/133100/)
-[x] [Cheminée](https://freesound.org/people/inchadney/sounds/83986/)
+- [x] [Pluie](https://freesound.org/people/Arctura/sounds/34065/)
+- [x] [Orage](https://freesound.org/people/s-light/sounds/414050/)
+- [x] [Vent](https://freesound.org/people/ERH/sounds/34338/)
+- [x] [Oiseaux](https://freesound.org/people/hargissssound/sounds/345851/)
+- [x] [Oiseaux Foret](https://freesound.org/people/reinsamba/sounds/18765/)
+- [x] [Feuilles](https://freesound.org/people/alessandro.gargiulo/sounds/420155/)
+- [x] [Côte](https://freesound.org/people/Luftrum/sounds/48412/)
+- [x] [Ruisseau](https://freesound.org/people/Pfannkuchn/sounds/459409/)
+- [x] [Feu de camp](https://freesound.org/people/matucha/sounds/170247/)
+- [x] [Stress](https://freesound.org/people/klankbeeld/sounds/133100/)
+- [x] [Cheminée](https://freesound.org/people/inchadney/sounds/83986/)
 
 
 ### La license
@@ -45,15 +45,15 @@ Cette license me permettra d'utiliser les sons de la manière dont je le souhait
 
 ### Choix icones
 
-[x] [Pluie](https://www.flaticon.com/free-icon/rain_1146797)
-[x] [Orage](https://www.flaticon.com/free-icon/storm_1146799)
-[x] [Vent](https://www.flaticon.com/free-icon/wind_615775)
-[x] [Oiseaux](https://www.flaticon.com/free-icon/bullfinch_3628627)
-[x] [Oiseaux Foret](https://www.flaticon.com/free-icon/bird_3069186)
-[x] [Feuilles](https://www.flaticon.com/free-icon/leaves_3351925)
-[x] [Côte](https://www.flaticon.com/free-icon/wave_433984)
-[x] [Ruisseau](https://www.flaticon.com/free-icon/water-drop_3105807)
-[x] [Feu de camp](https://www.flaticon.com/free-icon/bonfire_3153859)
-[x] [Stress](https://www.flaticon.com/free-icon/eyeball_2213665)
-[x] [Cheminée](https://www.flaticon.com/free-icon/fireplace_604215)
+- [x] [Pluie](https://www.flaticon.com/free-icon/rain_1146797)
+- [x] [Orage](https://www.flaticon.com/free-icon/storm_1146799)
+- [x] [Vent](https://www.flaticon.com/free-icon/wind_615775)
+- [x] [Oiseaux](https://www.flaticon.com/free-icon/bullfinch_3628627)
+- [x] [Oiseaux Foret](https://www.flaticon.com/free-icon/bird_3069186)
+- [x] [Feuilles](https://www.flaticon.com/free-icon/leaves_3351925)
+- [x] [Côte](https://www.flaticon.com/free-icon/wave_433984)
+- [x] [Ruisseau](https://www.flaticon.com/free-icon/water-drop_3105807)
+- [x] [Feu de camp](https://www.flaticon.com/free-icon/bonfire_3153859)
+- [x] [Stress](https://www.flaticon.com/free-icon/eyeball_2213665)
+- [x] [Cheminée](https://www.flaticon.com/free-icon/fireplace_604215)
 
