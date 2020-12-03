@@ -11,9 +11,11 @@
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:text="
 Credits:\n
+    Developped by:\n
+        Louison SARLIN--MAGNUS\n
     Sounds from freesound.org:\n
         - Arctura\n
         - s-light\n
