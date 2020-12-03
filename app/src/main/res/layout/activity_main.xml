@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="5"
+    android:background="@color/grey"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+
+        <ImageButton
+            android:id="@+id/ImageButton_Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/grey"
+            android:src="@drawable/baseline_info_black_18dp"
+            />
+
+        <TextView
+            android:id="@+id/nomAppli"
+            android:text="Ambiancinator"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+    
+    <GridLayout
+
+        android:layout_weight="4"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="14dp">
+
+
+        <!-- Row 1 -->
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_OiseauxForet"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_OiseauxForet"
+                    android:src="@drawable/oiseauxforet"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_OiseauxForet"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Feuilles"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Feuilles"
+                    android:src="@drawable/feuilles"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Feuilles"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Column 3 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_FeuDeCamp"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_FeuDeCamp"
+                    android:src="@drawable/feudecamp"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_FeuDeCamp"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Row 2 -->
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Oiseaux"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Oiseaux"
+                    android:src="@drawable/oiseaux"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Oiseaux"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Ruisseau"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Ruisseau"
+                    android:src="@drawable/ruisseau"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Ruisseau"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 3 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Cheminee"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Cheminee"
+                    android:src="@drawable/cheminee"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Cheminee"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Row 3 -->
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Cote"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Cote"
+                    android:src="@drawable/cote"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Cote"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Vent"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Vent"
+                    android:src="@drawable/vent"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Vent"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 3 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Pluie"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Pluie"
+                    android:src="@drawable/pluie"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Pluie"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Row 4 -->
+
+        <!-- Column 1 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Stress"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Stress"
+                    android:src="@drawable/stress"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Stress"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 2 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Orage"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Orage"
+                    android:src="@drawable/orage"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Orage"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!-- Column 3 -->
+        <androidx.cardview.widget.CardView
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
+
+
+</LinearLayout>
+
+<!--
+            <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_Orage"
+            app:cardBackgroundColor="@color/softer_grey"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="5dp"
+                android:weightSum="4"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="@color/soft_grey"
+                    android:layout_weight="3"
+                    android:id="@+id/ImageButton_Orage"
+                    android:src="@drawable/orage"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"/>
+                <SeekBar
+                    android:id="@+id/SeekBar_Orage"
+                    android:progress="20"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTint="@color/purple_200"
+                    android:progressTint="@color/purple_200"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+-->
